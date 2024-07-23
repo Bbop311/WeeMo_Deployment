@@ -1,0 +1,56 @@
+<header>
+<nav class="py-2 bg-body-tertiary border-bottom">
+    <div class="container d-flex flex-wrap ">
+        <ul class="nav me-auto">
+            <li class="nav-item">
+                <a href="{{ path('app_home')}}" class="nav-link link-body-emphasis px-2">
+                    <img src="{{asset('images/weemo-logo.png')}}"  alt="weemo" class="logo-img"> 
+                </a>
+            </li>
+            
+           
+        </ul>
+    <ul class="nav mr" ">
+    <li class="nav-item"><a href="{{ path('app_add_property_step1') }}" class="btn btn-nav-addlisting px-2 text-white" style="margin-right: 10px;">Publiez une Annonce</a></li> 
+    <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">NOS ANNONCES</a></li>
+    <li class="nav-item"> <a href="#" class="nav-link link-body-emphasis px-2">ACHETER</a></li>
+    <li class="nav-item"> <a href="{{ path('app_add_property_step1') }}" class="nav-link link-body-emphasis px-2">VENDRE</a></li>
+    <li class="nav-item"> <a href="#" class="nav-link link-body-emphasis px-2">SIMILATEUR</a></li>
+    
+    </ul>
+
+        <ul class="nav">
+
+ <li class="nav-item"><span class="nav-link link-body-emphasis px-2">MON ESPACE | </span></li>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link link-body-emphasis px-2 dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Bonjour {{ app.user.firstName }} {{ app.user.lastName }}
+                
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a class="dropdown-item" href="{{ path('app_admin') }}">ADMIN DASHBOARD</a></li>
+                {% endif %}
+                <li><a class="dropdown-item" href="#">MON PROFIL</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{ path('app_logout') }}">DECONNEXION</a></li>
+            </ul>
+        </li>
+    {% else %}
+        <li class="nav-item"><a href="{{ path('app_login') }}" class="nav-link link-body-emphasis px-2">CONNEXION</a></li>
+        <li class="nav-item"><a href="{{ path('app_register') }}" class="nav-link link-body-emphasis px-2">INSCRIPTION</a></li>
+    {% endif %}
+</ul>
+    </div>
+</nav>
+</header>
+
+{% if app.request.get('_route') == 'app_home' %}
+{% include "partials/home_hero.html.twig" %}
+{% else %}
+    
+{% endif %}
+
+

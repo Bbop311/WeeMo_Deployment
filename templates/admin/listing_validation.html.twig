@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listing Validation{% endblock %}
+
+
+
+{% block body %}
+
+
+ <p class="card-text"> Nom propriétaire: {{listing.property.user.Firstname}} {{listing.property.user.Lastname}}</p>
+  
+<p> Quel devrait être le statut de l'annonce {{ listing.id }} ?</p>
+
+{{ form(form) }}
+
+{% endblock %}
